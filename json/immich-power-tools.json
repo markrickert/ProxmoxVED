@@ -1,0 +1,48 @@
+{
+  "name": "Immich Power Tools",
+  "slug": "immich-power-tools",
+  "categories": [
+    13
+  ],
+  "date_created": "2026-05-06",
+  "type": "ct",
+  "updateable": true,
+  "privileged": false,
+  "interface_port": 3000,
+  "documentation": "https://github.com/immich-power-tools/immich-power-tools",
+  "website": "https://github.com/immich-power-tools/immich-power-tools",
+  "logo": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/immich.webp",
+  "description": "Immich Power Tools is a feature-rich companion app for Immich that provides advanced album management, duplicate detection, face tagging, timeline analysis, and AI-powered photo search.",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "ct/immich-power-tools.sh",
+      "config_path": "/opt/immich-power-tools/.env",
+      "resources": {
+        "cpu": 2,
+        "ram": 2048,
+        "hdd": 4,
+        "os": "Debian",
+        "version": "12"
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "notes": [
+    {
+      "text": "During installation you will be prompted for your Immich URL, API key, and PostgreSQL connection details. These are saved to /opt/immich-power-tools/.env and can be edited later.",
+      "type": "info"
+    },
+    {
+      "text": "Immich API key can be generated in Immich under Account Settings > API Keys.",
+      "type": "info"
+    },
+    {
+      "text": "The PostgreSQL host should be the IP or hostname of your Immich server's database (default port 5432, user postgres, database immich).",
+      "type": "info"
+    }
+  ]
+}
