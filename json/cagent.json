@@ -1,0 +1,50 @@
+{
+  "name": "Cagent",
+  "slug": "cagent",
+  "categories": [20],
+  "date_created": "2026-05-16",
+  "type": "ct",
+  "updateable": false,
+  "privileged": true,
+  "interface_port": 8443,
+  "documentation": "https://docs.claude.com/en/docs/claude-code",
+  "website": "https://claude.com/product/claude-code",
+  "logo": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/anthropic.webp",
+  "description": "Cagent is a sandboxed LXC for running an autonomous coding agent. A fully provisioned Ubuntu container preloaded with Node.js, Python, Go, Rust, and Docker, plus Claude Code and a curated set of plugins (frontend-design, code-review, commit-commands, security-guidance, context7, webapp-testing, superpowers). All agent tools are pre-approved for hands-off use. Code Server is exposed on port 8443 for browser-based editing.",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "ct/cagent.sh",
+      "config_path": "/root/.claude/settings.json",
+      "resources": {
+        "cpu": 4,
+        "ram": 10240,
+        "hdd": 30,
+        "os": "Ubuntu",
+        "version": "24.04"
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "notes": [
+    {
+      "text": "A randomly generated Code Server password is written to `~/cagent.creds` inside the LXC. View it with `cat ~/cagent.creds`. To rotate, edit `PASSWORD` in `/docker/code-server/docker-compose.yml` and run `docker compose up -d` from that directory.",
+      "type": "info"
+    },
+    {
+      "text": "Claude Code is preinstalled. Enter the LXC (`pct enter <id>`) and run `claude` to authenticate and start working. The shell auto-cds into `/project`.",
+      "type": "info"
+    },
+    {
+      "text": "All Claude Code tools (Bash, Read, Write, Edit, WebFetch, Task, MCP, etc.) are pre-approved in `~/.claude/settings.json` — there are no permission prompts. This is intended for a sandboxed LXC; do not enable this configuration on a host with sensitive data.",
+      "type": "warning"
+    },
+    {
+      "text": "A privileged container with `nesting=1, keyctl=1` is required so Docker (Watchtower + Code Server) can run inside the LXC. AppArmor is set to unconfined.",
+      "type": "info"
+    }
+  ]
+}
